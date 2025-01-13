@@ -1,3 +1,9 @@
+<?php
+    require_once("confiq\conection.php");
+$sql = "SELECT * FROM car";
+$result = $con->query($sql);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +19,14 @@
         <img class="md:hidden" src="photo/logo.png" alt="">
         <div class="flex md:justify-between justify-center items-center w-9/12 m-auto gap-4">
             <div class="flex gap-4">
-                <a href="index.html" class="font-semibold text-black">Home</a>
-                <a href="shop.html" class="hover:scale-110 hover:font-semibold hover:text-black">Shop</a>
+                <a href="index.php" class="font-semibold text-black">Home</a>
+                <a href="shop.php" class="hover:scale-110 hover:font-semibold hover:text-black">Shop</a>
             </div>
             <img class="hidden md:block" src="photo/logo.png" alt="">
             <div class="flex gap-4">
                 <a class="hover:scale-110 hover:font-semibold hover:text-black">Contact</a>
                 <a class="hover:scale-110 hover:font-semibold hover:text-black">About Us</a>
-                <a href="login.html" class="hover:scale-110 hover:font-semibold hover:text-black">Profile</a>
+                <a href="login.php" class="hover:scale-110 hover:font-semibold hover:text-black">Profile</a>
             </div>
         </div>
     </div>
@@ -64,88 +70,54 @@
             </div>
             <!-- cart list -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- cart-1 -->
-                <div class="flex items-center mt-10 hover:scale-110">
-                    <div class="w-[50%] -mr-[60px]">
-                        <img class=" relative z-20" src="photo/car2.png" alt="">
-                    </div>
-                    <div class="w-[60%] h-[220px] bg-white p-3 rounded-lg mb-16">
-                        <h4>Tesla Model 3</h4>
-                        <p>Used</p>
-                        <div class="w-8/12 m-auto mr-0 gap-2">
-                            <div class="flex justify-between">
-                                <div class="">
-                                    <p>Model Year</p>
-                                    <p>Model</p>
-                                    <p>Fuel</p>
+            <?php
+                $cnt = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                    if ($cnt >= 3) break; 
+                    $cnt++;
+                    ?>
+                    <div class="flex items-center mt-10 hover:scale-110">
+                        <div class="w-[50%] -mr-[60px]">
+                            <img class=" relative z-20" src="<?php echo $row['image']?>" alt="">
+                        </div>
+                        <div class="w-[60%] h-[250px] bg-white p-3 rounded-lg mb-16">
+                            <h4><?php echo $row['name']?></h4>
+                            <p><?php echo $row['type']?></p>
+                            <div class="w-8/12 m-auto mr-0 gap-2">
+                                <div class="flex justify-between">
+                                    <div class="">
+                                        <p>Model Year</p>
+                                        <p>Model</p>
+                                        <p>Fuel</p>
+                                    </div>
+                                    <div class="flex flex-col items-end">
+                                        <p><?php echo $row['year']?></p>
+                                        <p><?php echo $row['model']?></p>
+                                        <p><?php echo $row['fuel']?></p>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col items-end">
-                                    <p>2023</p>
-                                    <p>LC76</p>
-                                    <p>Petrol</p>
-                                </div>
+                                <p class="font-semibold text-[1em] py-2">$<?php echo $row['price']?></p>
+                                <?php
+                                if($row['quantity'] >0 ){
+                                    ?>
+                                    <a href="payment.php?model=<?php echo urlencode($row['model']); ?>" class="btn btn-primary"><button class="bg-[#100E34] text-white px-5 py-1 rounded-2xl w-full">Order Now</button></a>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <button class="bg-[#100E34] text-white text-[.9em] px-5 py-1 rounded-2xl w-full" disabled>Out of Stock</button>
+                                    <?php
+                                }
+                                ?>
                             </div>
-                            <p class="font-semibold text-[1em] py-2">$36620</p>
-                            <button class="bg-[#100E34] text-white px-5 py-1 rounded-2xl w-full">Order Now</button>
                         </div>
                     </div>
-                </div>
-                <!-- cart-2 -->
-                <div class="flex items-center mt-10 hover:scale-110">
-                    <div class="w-[50%] -mr-[60px]">
-                        <img class=" relative z-20" src="photo/car3.png" alt="">
-                    </div>
-                    <div class="w-[60%] h-[220px] bg-white p-3 rounded-lg mb-16">
-                        <h4>Tesla Model 3</h4>
-                        <p>Used</p>
-                        <div class="w-8/12 m-auto mr-0 gap-2">
-                            <div class="flex justify-between">
-                                <div class="">
-                                    <p>Model Year</p>
-                                    <p>Model</p>
-                                    <p>Fuel</p>
-                                </div>
-                                <div class="flex flex-col items-end">
-                                    <p>2023</p>
-                                    <p>LC76</p>
-                                    <p>Petrol</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold text-[1em] py-2">$36620</p>
-                            <button class="bg-[#100E34] text-white px-5 py-1 rounded-2xl w-full">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- cart-3 -->
-                <div class="flex items-center mt-10 hover:scale-110">
-                    <div class="w-[50%] -mr-[60px]">
-                        <img class=" relative z-20" src="photo/car4.png" alt="">
-                    </div>
-                    <div class="w-[60%] h-[220px] bg-white p-3 rounded-lg mb-16">
-                        <h4>Tesla Model 3</h4>
-                        <p>Used</p>
-                        <div class="w-8/12 m-auto mr-0 gap-2">
-                            <div class="flex justify-between">
-                                <div class="">
-                                    <p>Model Year</p>
-                                    <p>Model</p>
-                                    <p>Fuel</p>
-                                </div>
-                                <div class="flex flex-col items-end">
-                                    <p>2023</p>
-                                    <p>LC76</p>
-                                    <p>Petrol</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold text-[1em] py-2">$36620</p>
-                            <button class="bg-[#100E34] text-white px-5 py-1 rounded-2xl w-full">Order Now</button>
-                        </div>
-                    </div>
-                </div>
+                    <?php
+                    }
+                ?>
             </div>
             <!-- see_more -->
             <div class="flex w-full justify-end p-4">
-                <a class="hover:scale-110 hover:font-semibold hover:text-black" href="shop.html">See More ></a>
+                <a class="hover:scale-110 hover:font-semibold hover:text-black" href="shop.php">See More ></a>
             </div>
         </div>
     </div>

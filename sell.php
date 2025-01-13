@@ -1,3 +1,9 @@
+<?php
+    require_once("confiq\conection.php");
+$sql = "SELECT * FROM sell";
+$result = $con->query($sql);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title> HOME || CAR DEALERSHIP</title>
+    <title> Admin || CAR DEALERSHIP</title>
 </head>
 <body>
     <!-- nav -->
@@ -13,14 +19,14 @@
         <img class="md:hidden" src="photo/logo.png" alt="">
         <div class="flex md:justify-between justify-center items-center w-9/12 m-auto gap-4">
             <div class="flex gap-4">
-                <a href="index.html" class="hover:scale-110 hover:font-semibold hover:text-black">Home</a>
-                <a href="shop.html" class="hover:scale-110 hover:font-semibold hover:text-black">Shop</a>
+                <a href="index.php" class="hover:scale-110 hover:font-semibold hover:text-black">Home</a>
+                <a href="shop.php" class="hover:scale-110 hover:font-semibold hover:text-black">Shop</a>
             </div>
             <img class="hidden md:block" src="photo/logo.png" alt="">
             <div class="flex gap-4">
                 <a class="hover:scale-110 hover:font-semibold hover:text-black">Contact</a>
                 <a class="hover:scale-110 hover:font-semibold hover:text-black">About Us</a>
-                <a href="Customer.html" class="font-semibold text-black">Profile</a>
+                <a href="Customer.php" class="font-semibold text-black">Profile</a>
             </div>
         </div>
     </div>
@@ -28,52 +34,50 @@
      <div class="flex w-full pb-5 md:w-6/12 m-auto">
         <p class="text-center w-[50%] border-b-2 border-red-500 py-3 m-auto">Dashboard</p>
      </div>
-     <div class="new-order-section mb-8 md:w-6/12 m-auto">
-        <p class="text-lg text-center font-semibold mb-4">New Order</p>
-        <table class="table-auto w-full border-collapse border border-gray-300">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="border border-gray-300 px-4 py-2 text-left">Car Name</th>
-                    <th class="border border-gray-300 px-4 py-2 text-left">Car Model</th>
-                    <th class="border border-gray-300 px-4 py-2 text-left">Price</th>
-                    <th class="border border-gray-300 px-4 py-2 text-left">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="border border-gray-300 px-4 py-2">Tesla</td>
-                    <td class="border border-gray-300 px-4 py-2">Model 3</td>
-                    <td class="border border-gray-300 px-4 py-2">$35,000</td>
-                    <td class="border border-gray-300 px-4 py-2">Pending</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+
     
-    <div class="order-history-section md:w-6/12 m-auto">
-        <p class="text-lg text-center font-semibold mb-4">Order History</p>
-        <table class="table-auto w-full border-collapse border border-gray-300">
+    <div class="order-history-section md:w-10/12 m-auto">
+        <div class="flex w-6/12 pb-5 m-auto">
+            <a href="admin.php" class="text-center w-[50%] border-b-2 border-gray-100 py-3 m-auto">User List</a>
+            <a href="car.php" class="text-center w-[50%] border-b-2 border-gray-100 py-3 m-auto">Car List</a>
+            <a href="sell.php" class="text-center w-[50%] border-b-2 border-red-500 py-3 m-auto">Sell History</a>
+        </div>
+        <a href="addcar.php">ADD CAR</a>
+        <table class="table-auto w-full border-collapse border border-gray-300 m-auto">
             <thead class="bg-gray-100">
                 <tr>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Customer Name</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Customer Number</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Customer Email</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Customer Address</th>
                     <th class="border border-gray-300 px-4 py-2 text-left">Car Name</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Car Type</th>
                     <th class="border border-gray-300 px-4 py-2 text-left">Car Model</th>
-                    <th class="border border-gray-300 px-4 py-2 text-left">Price</th>
-                    <th class="border border-gray-300 px-4 py-2 text-left">Status</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Car Model Year</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Car fuel Type</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Car Price</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="border border-gray-300 px-4 py-2">Ford</td>
-                    <td class="border border-gray-300 px-4 py-2">Mustang</td>
-                    <td class="border border-gray-300 px-4 py-2">$27,000</td>
-                    <td class="border border-gray-300 px-4 py-2">Delivered</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-4 py-2">BMW</td>
-                    <td class="border border-gray-300 px-4 py-2">3 Series</td>
-                    <td class="border border-gray-300 px-4 py-2">$41,000</td>
-                    <td class="border border-gray-300 px-4 py-2">Cancelled</td>
-                </tr>
+                <?php 
+                    while($row = mysqli_fetch_array($result)){
+                    ?>
+                    <tr">
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['customer_name']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['customer_number']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['customer_email']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['customer_address']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['car_name']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['car_type']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['car_model']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['car_year']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['car_fuel']?></td>
+                        <td class="border border-gray-300 px-4 py-2"><?php echo $row['car_price']?></td>
+                    </tr>
+                    <?php
+                    }
+                ?>
+                
             </tbody>
         </table>
     </div>
