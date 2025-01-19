@@ -42,7 +42,6 @@ $result = $con->query($sql);
             <a href="car.php" class="text-center w-[50%] border-b-2 border-gray-100 py-3 m-auto">Car List</a>
             <a href="sell.php" class="text-center w-[50%] border-b-2 border-red-500 py-3 m-auto">Sell History</a>
         </div>
-        <a href="addcar.php">ADD CAR</a>
         <table class="table-auto w-full border-collapse border border-gray-300 m-auto">
             <thead class="bg-gray-100">
                 <tr>
